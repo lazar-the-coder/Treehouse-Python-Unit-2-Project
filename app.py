@@ -43,7 +43,7 @@ def display(team):
     player_count, player_names, exp_players, inexp_players, ave_height, guardian_names = calculations.display_team_stats(team)
     print("\n", team)
     print("Total Players: ", player_count)
-    print("Player Names: ", player_count)
+    print("Player Names: ")
     print(', '.join(player_names))
     print("Experienced Players:", exp_players)
     print("Inexperienced Players:", inexp_players)
@@ -53,4 +53,5 @@ def display(team):
     input("\nEnter anything to go back to menu")
     main_menu()
 
-print_start()
+if __name__ == "__main__":
+    print_start()
