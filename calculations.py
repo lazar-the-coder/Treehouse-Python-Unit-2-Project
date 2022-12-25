@@ -10,7 +10,6 @@ teams_sorted = {}
 def main():
     convert_team_data()
     sort_to_teams()
-    display_team_stats()
 
 def convert_team_data():
     for player in constants.PLAYERS:
@@ -47,12 +46,21 @@ def sort_to_teams():
         set_of_players = assign_players(exp_limit, unexp_limit)
         teams_sorted[team] = set_of_players
 
-def display_team_stats():
-    for team in teams_sorted:
-        print("\n", team)
-        print("Players: ", len(teams_sorted[team]))
-        for player in teams_sorted[team]:
-            print(player["name"])
+def display_team_stats(team):
+    print("\n", team)
+    print("Players: ", len(teams_sorted[team]))
+    player_names = []
+    for player in teams_sorted[team]:
+        player_names.append(player["name"])
+    print(', '.join(player_names))
+    print("Experienced Players:", sum(1 for player in teams_sorted[team] if player["experience"] is True))
+    print("Inexperienced Players:", sum(1 for player in teams_sorted[team] if player["experience"] is False))
+    print("Average Height:", (sum(player["height"] for player in teams_sorted[team])/len(teams_sorted[team])))
+    print("Guardians:")
+    guardian_names = []
+    for player in teams_sorted[team]:
+        guardian_names.extend(player["guardians"])
+    print(', '.join(guardian_names))
 
 if __name__ == "__main__":
     main()
