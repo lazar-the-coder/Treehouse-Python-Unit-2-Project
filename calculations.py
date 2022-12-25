@@ -33,7 +33,7 @@ def list_popper(player_list, limit):
     for num in range(limit):
         new_player = player_list.pop()
         team_player_list.append(new_player)
-    return player_list
+    return team_player_list
 
 def assign_players(exp_limit, unexp_limit):
     full_player_list = list_popper(exp_players_list, exp_limit) +  list_popper(unexp_players_list, unexp_limit)
@@ -46,12 +46,11 @@ def sort_to_teams():
     for team in teams_list:
         set_of_players = assign_players(exp_limit, unexp_limit)
         teams_sorted[team] = set_of_players
-        print(set_of_players)
 
 def display_team_stats():
     for team in teams_sorted:
-        print(team)
-        print("Players: ", len(team))
+        print("\n", team)
+        print("Players: ", len(teams_sorted[team]))
         for player in teams_sorted[team]:
             print(player["name"])
 
